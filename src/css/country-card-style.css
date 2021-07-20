@@ -1,0 +1,9 @@
+.country__name {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.country__capital {
+  font-size: 20px;
+  font-weight: 600;
+}

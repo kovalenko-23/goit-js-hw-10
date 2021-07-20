@@ -1,4 +1,5 @@
 import './css/style.css';
+import './css/country-card-style.css';
 import API from './partials/fetchCountries.js';
 import countriesList from './templates/countries-list.hbs';
 import countryCard from './templates/country-card.hbs';
