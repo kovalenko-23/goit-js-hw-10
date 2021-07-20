@@ -25,6 +25,9 @@ function onInputChange(event) {
         .then((countries => {
             if (countries.length === 1) {
                 renderCountryInfo(countries);
+                const languages = countries[0].languages.map(l => l.name).join(', ');
+                const markup = `<p>Languages: ${languages}</p>`;
+                cardInfo.insertAdjacentHTML('beforeend', markup);
             }
 
             if (countries.length >= 2 && countries.length <= 10) {
