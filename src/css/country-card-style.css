@@ -7,4 +7,16 @@
 .country__capital {
   font-size: 20px;
   font-weight: 600;
+  margin: 0;
+}
+
+.country__population {
+  margin: 0;
+}
+
+.params__item {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin: 0px;
 }
