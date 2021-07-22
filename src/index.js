@@ -23,27 +23,27 @@ function onInputChange(event) {
     cardList.innerHTML = '';
     
     API.fetchCountry(inputValue)
-        .then((countries => {
-            if (countries.length === 1) {
-                renderCountryInfo(countries);
-                const languages = countries[0].languages.map(l => l.name).join(', ');
-                const markup = `<p><p class="params__item">Languages:</p> ${languages}</p>`;
-                cardInfo.insertAdjacentHTML('beforeend', markup);
-            }
+    .then((countries => {
+        if (countries.length === 1) {
+            renderCountryInfo(countries);
+            const languages = countries[0].languages.map(l => l.name).join(', ');
+            const markup = `<p><p class="params__item">Languages:</p> ${languages}</p>`;
+            cardInfo.insertAdjacentHTML('beforeend', markup);
+        }
 
-            if (countries.length >= 2 && countries.length <= 10) {
-                renderCountryList(countries);
-            }
+        if (countries.length >= 2 && countries.length <= 10) {
+            renderCountryList(countries);
+        }
 
-            if (countries.length > 10) {
-                Notiflix.Notify.info('Too many matches found. Please enter a more specific name');
-            }
+        if (countries.length > 10) {
+            Notiflix.Notify.info('Too many matches found. Please enter a more specific name');
+        }
 
-            if (!countries.length) {
-                 Notiflix.Notify.failure('Oops, there is no country with that name');
-            }
-        }))
-        .catch(error => Notiflix.Notify.failure('Oops, there is no country with that name'));
+        if (!countries.length) {
+                Notiflix.Notify.failure('Oops, there is no country with that name');
+        }
+    }))
+    .catch(error => Notiflix.Notify.failure('Oops, there is no country with that name'));
 }
 
 
