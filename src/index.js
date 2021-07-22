@@ -16,13 +16,13 @@ const DEBOUNCE_DELAY = 300;
 
 searchInput.addEventListener('input', debounce(onInputChange, DEBOUNCE_DELAY));
 
-function onInputChange(event) {
+async function onInputChange(event) {
     event.preventDefault();
     const inputValue = event.target.value;
     cardInfo.innerHTML = '';
     cardList.innerHTML = '';
     
-    API.fetchCountry(inputValue)
+    await API.fetchCountry(inputValue)
     .then((countries => {
         if (countries.length === 1) {
             renderCountryInfo(countries);
@@ -43,7 +43,7 @@ function onInputChange(event) {
                 Notiflix.Notify.failure('Oops, there is no country with that name');
         }
     }))
-    .catch(error => Notiflix.Notify.failure('Oops, there is no country with that name'));
+        .catch(error => Notiflix.Notify.failure('Oops, there is no country with that name'));
 }
 
 
