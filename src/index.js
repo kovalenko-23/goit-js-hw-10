@@ -22,28 +22,32 @@ async function onInputChange(event) {
     cardInfo.innerHTML = '';
     cardList.innerHTML = '';
     
-    await API.fetchCountry(inputValue)
-    .then((countries => {
-        if (countries.length === 1) {
-            renderCountryInfo(countries);
-            const languages = countries[0].languages.map(l => l.name).join(', ');
+    try {
+        const countrie = await API.fetchCountry(inputValue);
+    
+        if (countrie.length === 1) {
+            renderCountryInfo(countrie);
+            const languages = countrie[0].languages.map(l => l.name).join(', ');
             const markup = `<p><p class="params__item">Languages:</p> ${languages}</p>`;
             cardInfo.insertAdjacentHTML('beforeend', markup);
         }
 
-        if (countries.length >= 2 && countries.length <= 10) {
-            renderCountryList(countries);
+        if (countrie.length >= 2 && countrie.length <= 10) {
+            renderCountryList(countrie);
         }
 
-        if (countries.length > 10) {
+        if (countrie.length > 10) {
             Notiflix.Notify.info('Too many matches found. Please enter a more specific name');
         }
 
-        if (!countries.length) {
+        if (!countrie.length) {
                 Notiflix.Notify.failure('Oops, there is no country with that name');
         }
-    }))
-        .catch(error => Notiflix.Notify.failure('Oops, there is no country with that name'));
+    
+    
+    } catch (error) {
+        Notiflix.Notify.failure('Oops, there is no country with that name')
+    };
 }
 
 
